@@ -1,8 +1,0 @@
-[
-     {
-          "algorithm": "The feature selection algorithm defines a criterion that aims to extract the feature channels that minimize the inter-class similarity of the concatenated features of visual and category textual features, but maximize the variance of category textual features.",
-          "code": "import torch\n\ndef feat_selection(clip_weights, train_feats, w0, w1, topk):\n    \n    feats = torch.cat([clip_weights.unsqueeze(1), train_feats], dim=1)\n    indices = torch.arange(topk)\n    \n    return indices",
-          "objective": 10000.0,
-          "other_inf": null
-     }
-]
