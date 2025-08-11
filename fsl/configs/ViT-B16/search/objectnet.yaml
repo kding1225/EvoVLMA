@@ -1,0 +1,10 @@
+# ------ root_path/dataset_name ------
+root_path: '/home/dingkun/data/fs_data2'
+
+# ------ Basic Config ------
+dataset: 'objectnet'
+shots: 16
+backbone: 'ViT-B/16'
+
+subsample_classes: 'all'
+augment_epoch: 10

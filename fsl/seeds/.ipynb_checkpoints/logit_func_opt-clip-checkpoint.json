@@ -1,0 +1,8 @@
+[
+     {
+          "algorithm": "The logits are computed by applying linear transformation to test features. The linear transformation weights are the text features extracted by encoding class names with CLIP's text encoder.",
+          "code": "import torch\n\ndef compute_logits(train_feats, train_labels, test_feats, clip_weights, indices, alpha0, alpha1, alpha2):\n    clip_logits = 100*test_feats @ clip_weights.t()\n    return clip_logits",
+          "objective": 10000.0,
+          "other_inf": null
+     }
+]

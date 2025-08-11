@@ -1,0 +1,8 @@
+[
+     {
+          "algorithm": "The feature selection algorithm defines a criterion that aims to extract the feature channels that minimize the inter-class similarity of the concatenated features of visual and category textual features, but maximize the variance of category textual features.",
+          "code": "import torch\n\ndef feat_selection(clip_weights, train_feats, w0, w1, topk):\n    \n    feats = torch.cat([clip_weights.unsqueeze(1), train_feats], dim=1)\n    \n    cate_num, samp_num, feat_dim = feats.shape\n    sim_sum = torch.zeros((feat_dim)).cuda()\n    count = 0\n    for i in range(cate_num):\n        for j in range(cate_num):\n            if i != j:\n                sim_sum += (feats[i].unsqueeze(1) * feats[j].unsqueeze(0)).mean(dim=0).mean(dim=0)\n                count += samp_num*samp_num\n    sim = sim_sum / count\n    criterion = (-1) * w0 * sim + w1 * torch.var(clip_weights, dim=0)\n    \n    _, indices = torch.topk(criterion, k=topk)\n    return indices",
+          "objective": 10000.0,
+          "other_inf": null
+     }
+]
